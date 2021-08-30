@@ -1,0 +1,14 @@
+---
+- name: Playbook to check the httpd status
+  hosts: servera
+  tasks:
+
+    - name: checking httpd service status
+      command: "/usr/bin/systemctl status httpd"
+      register: status
+
+    - name: display te status
+      debug:
+        msg: "program completed"
+      when: status.rc == 1
+

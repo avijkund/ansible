@@ -1,0 +1,48 @@
+---
+- name: Creating a Directory with file module
+  hosts: server
+  tasks:
+    - name: creating directory and assign permission
+      file:
+        path: /var/tmp/mydir
+        state: directory
+        owner: devops
+        group: devops
+        mode: '0700'
+        setype: httpd_sys_content_t
+
+    - name: Setting directory selinux type persistently
+      sefcontext:
+        setype: httpd_sys_content_t
+        target: /var/tmp/mydir
+        state: present
+
+    - name: creating mypage in /var/tmp/mydir directory
+      copy:
+        dest: /var/tmp/mydir/mypage.html
+        content: 'This is a test web content'
+        force: false
+
+    - name: copying the /var/log/secure from servers
+      fetch: 
+       src: /var/log/secure
+       dest: /home/avijit/project/log/.
+
+    - name: adding line in mypage.html file
+      lineinfile:
+        path: /var/tmp/mydir/mypage.html
+        line: "The contents are created with Ansible"
+        state: present
+
+    - name: creating a blank file
+      file:
+        path: /home/devops/myfile
+        state: touch
+
+    - name:  adding a block in myfile
+      blockinfile:
+        path: /home/devops/myfile
+        block: |
+            This block of texts has two lines
+            We used blockinline to do this
+        state: present

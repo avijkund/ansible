@@ -1,0 +1,12 @@
+---
+- name: Play to insert line using lineinfile module
+  hosts: web
+  tasks:
+
+    - name: insert a line in host file
+      lineinfile:
+        path: /etc/hosts
+        line: "192.168.4.100	demo.example.com demo"
+        state: absent
+...
+

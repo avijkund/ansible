@@ -1,0 +1,23 @@
+---
+- name: Playbook for repository add
+  hosts: web
+  vars:
+    - name: mariadb
+    - description: MariaDB
+    - baseurl: http://yum.mariadb.org/10.6/centos8-amd64
+    - gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+  tasks:
+    - name: adding mariadb repository
+      yum_repository:
+        name: "{{ name }}"
+        description: "{{ description }}"
+        baseurl: "{{ baseurl }}"
+        gpgcheck: true
+        gpgkey: "{{ gpgkey }}"
+        state: present
+        enabled: true
+
+    - name: installing mariadb 
+      yum:
+        name: mariadb-server
+        state: latest

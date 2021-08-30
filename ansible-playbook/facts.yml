@@ -1,0 +1,12 @@
+---
+- name: testing facts
+  hosts: web
+  tasks:
+    - name: testing the facts
+      debug:
+        var: ansible_eth0["ipv4"]["address"]
+      register: test
+
+    - name: show the value
+      debug:
+        var: test

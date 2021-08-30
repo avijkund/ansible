@@ -1,0 +1,47 @@
+---
+- name: playbook for task 1
+  hosts: web
+  tasks:
+    - name: test of httpd installation
+      yum:
+       name: "{{ web_pkg }}"
+       state: present
+
+    - name: copying index.html file to host
+      copy:
+        src: "{{ new_doc }}"
+        dest: "{{ document_path }}"
+        owner: root
+        group: root
+        mode: 0644
+    - name: change web port to port 
+      lineinfile:
+        path: "{{ conf_file }}"
+        regexp: '^Listen'
+        line: 'Listen 82'
+        state: present
+
+    - name: relableing seport for service to start
+      seport: 
+        ports: 82
+        proto: tcp
+        setype: http_port_t
+        state: present
+
+    - name: allow port from firewall
+      firewalld:
+        port: 82/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name: start web service
+      service: 
+        name: "{{ web_service }}"
+        state: restarted
+        enabled: true
+
+
+    
+ 
+...

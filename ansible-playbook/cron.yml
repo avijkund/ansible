@@ -1,0 +1,11 @@
+---
+- name: playbook to test cron module
+  hosts: web
+  tasks:
+    - name: scheduling a cron job
+      cron:
+        name: test
+        user: avijit
+        job: " echo hello world"
+        minute: '*'
+        state: absent
