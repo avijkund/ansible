@@ -1,0 +1,55 @@
+---
+- name: Configuring a web server 
+  hosts: web
+  tasks:
+    - name: installing necessary packages
+      yum:
+        name: 
+          - httpd
+          - mariadb-server
+          - firewalld
+          - php
+          - php-mysqlnd
+          - policycoreutils-python-utils
+        state: latest
+
+    - name: copying index.php file from managed host
+      get_url:
+        url: http://192.168.70.103/files/index.php
+        dest: /var/www/html/index.php
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: changing default port for http 
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf 
+        regexp: '^Listen'
+        line: Listen 82
+        state: present
+
+    - name: enable services 
+      service: 
+        name: "{{ item }}"
+        state: restarted
+        enabled: true
+      loop: 
+        - firewalld
+        - httpd
+        - mariadb
+    
+    - name: relabling selinux
+      seport: 
+        ports: 82
+        proto: tcp
+        setype: http_port_t
+        state: present 
+    
+    - name: enable http from firewall
+      firewalld:
+        port: 82/tcp
+        permanent: true
+        state: enabled
+        immediate: true
+
+...

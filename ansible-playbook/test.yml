@@ -1,0 +1,16 @@
+---
+- name: testing playbook with roles
+  hosts: web
+  pre_tasks:
+    - debug:
+        msg: " starting the process "
+
+  roles:
+    - avijit.web
+
+  post_tasks:
+    - debug:
+        msg: " all tasks end "
+
+...
+

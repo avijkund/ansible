@@ -1,0 +1,12 @@
+---
+- name: playbook for test at module
+  hosts: web
+  tasks:
+
+    - name: shcedule at job to run a tar archieve
+      at:
+        command: tar -cvf log.tar /var/log
+        count: 1 
+        units: minutes
+        state: present 
+

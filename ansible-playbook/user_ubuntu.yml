@@ -1,0 +1,17 @@
+---
+- name: creating user in ubuntu 
+  hosts: ubuntu
+  tasks:
+    - name: creating user abhisek
+      user:
+        name: abhisek
+        groups: sudo
+        state: present
+        password: "{{ 'abhisek' | password_hash('sha512') }}" 
+
+    - name: insert file in sudeors file
+      lineinfile:
+        dest: /etc/sudoers.d/user
+        line: ' abhisek ALL=(ALL) NOPASSWD:ALL'
+        state: present        
+        

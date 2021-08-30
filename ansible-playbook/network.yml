@@ -1,0 +1,9 @@
+---
+- name: use of rhel-system-roles.network role
+  hosts: web
+  
+  roles: 
+    - rhel-system-roles.network
+
+
+...

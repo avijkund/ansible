@@ -1,0 +1,22 @@
+---
+- name: testing of loop
+  hosts: all
+  tasks:
+    - name: installing packages
+      yum:
+        name: "{{ pkg }}"
+        state: present
+      register: status
+
+    - name: service started
+      service:
+        name: "{{ service }}"
+        state: started
+        enabled: true
+
+    - name: show the output
+      debug:
+        var: status
+
+
+

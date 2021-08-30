@@ -1,0 +1,9 @@
+---
+- name: playbook for reboot module
+  hosts: web
+  tasks:
+    - name: reboot all servers in web group
+      reboot:
+        msg: reboot triggered by ansible administrator
+        pre_reboot_delay: 120
+        reboot_timeout: 300

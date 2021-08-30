@@ -1,0 +1,38 @@
+---
+- name: use of when condition
+  hosts: all
+  vars:
+    - web_pkg: httpd
+    - db_pkg: mariadb-server
+    - db_service: mariadb
+
+  tasks:
+    - name: tasks run on web group
+      yum: 
+        name: "{{ web_pkg }}"
+        state: latest
+      when: inventory_hostname in groups ['web']
+      notify: starting the service in web
+    
+    - name: tasks run on db group
+      yum: 
+        name: "{{ db_pkg }}"
+        state: latest
+      when: inventory_hostname in groups ['db']
+      notify: starting the service in db
+
+  handlers:
+    - name: starting the service in web
+      service:
+        name: "{{ web_pkg }}"
+        state: started
+        enabled: true
+    
+    - name: starting the service in db
+      service:
+        name: "{{ db_service }}"
+        state: started
+        enabled: true
+
+    
+

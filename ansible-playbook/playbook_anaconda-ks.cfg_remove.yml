@@ -1,0 +1,14 @@
+---
+- name: Playbook to remove /root/anaconda-ks.cfg file
+  hosts: server
+  tasks:
+    
+    - name: removing /root/anaconda-ks.cfg file from manage hosts using file module
+      file:
+        path: /root/anaconda-ks.cfg
+        state: absent
+
+    - name: Keep the /root/anaconda-ks.cfg for control node in sync with /root/ks.cfg file of managed hosts
+      synchronize:
+        src: /home/avijit/project/anaconda-ks.cfg
+        dest: /root/ks.cfg
