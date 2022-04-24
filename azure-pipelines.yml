@@ -6,7 +6,9 @@ trigger:
 - main
 stages: 
 - stage: deploy
-  pool: Default
-  agent.name: ansible 
+  pool:
+   name: Defaults
+   demands: ansible
+   
 
 
