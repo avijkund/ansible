@@ -3,7 +3,6 @@
   hosts: localhost
   become_method: sudo
   become: true
-  become_ask_pass: false
   become_user: root
   tasks:
 
