@@ -1,6 +1,6 @@
 ---
 - name: playbook to test cron module
-  hosts: web
+  hosts: localhost
   tasks:
     - name: scheduling a cron job
       cron:
