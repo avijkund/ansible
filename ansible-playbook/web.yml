@@ -1,6 +1,9 @@
 ---
 - name: web server deployment using ansible
   hosts: localhost
+  become: true
+  become_ask_pass: false
+  become_user: root
   tasks:
 
     - name: installing httpd service
