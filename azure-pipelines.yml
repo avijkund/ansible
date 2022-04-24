@@ -1,5 +1,0 @@
-- task: Ansible@0
-  inputs:
-    ansibleInterface: 'agentMachine'
-    playbookPathOnAgentMachine: 'ansible-playbook/web.yml'
-    inventoriesAgentMachine: 'noInventory'
