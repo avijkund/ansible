@@ -8,6 +8,7 @@ pool:
   name: Defaults
   demands: ansible
 
+
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
