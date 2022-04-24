@@ -9,10 +9,7 @@ stages:
   pool:
    name: Defaults
    demands: ansible
-  jobs:
-  - job: BuildJob
-    steps:
-    - script: 
+  
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
