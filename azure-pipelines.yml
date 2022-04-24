@@ -4,12 +4,10 @@
 # https://aka.ms/yaml
 trigger:
 - main
-stages: 
-- stage: deploy
-  pool:
-   name: Defaults
-   demands: ansible
-  
+pool:
+  name: Defaults
+  demands: ansible
+
 - task: Ansible@0
   inputs:
     ansibleInterface: 'agentMachine'
