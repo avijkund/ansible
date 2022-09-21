@@ -1,0 +1,7 @@
+---
+- name: test 
+  hosts: win
+  tasks:
+  - debug:
+      var: ${{ parameters.image }}
+  
