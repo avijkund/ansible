@@ -16,10 +16,8 @@ parameters:
   - macOS-10.14
 trigger:
 - master
-pool: 
-   name: Default
-   demands:
-    - agent.name -equals ansible
+pool:
+  name: Default
 
 steps:
 - task: Ansible@0
