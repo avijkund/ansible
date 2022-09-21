@@ -26,5 +26,5 @@ steps:
     playbookPathOnAgentMachine: 'ansible-playbook/test_azure.yaml'
     inventoriesAgentMachine: 'file'
     inventoryFileOnAgentMachine: 'ansible-playbook/inventory'
-    args: '--extra-vars "image=$(parameters.image)"'
+    args: '--extra-vars "image=${{ parameters.image }}"'
 
