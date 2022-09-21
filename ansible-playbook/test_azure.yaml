@@ -1,6 +1,6 @@
 ---
 - name: test 
-  hosts: all
+  hosts: win
   tasks:
   - debug:
       var: ${{ parameters.image }}
