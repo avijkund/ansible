@@ -16,8 +16,10 @@ parameters:
   - macOS-10.14
 trigger:
 - master
-pool:
-  vmImage: ubuntu-latest
+pool: 
+   name: Default
+   demands:
+    - agent.name -equals ansible
 
 steps:
 - task: Ansible@0
