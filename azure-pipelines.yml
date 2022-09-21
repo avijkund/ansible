@@ -23,7 +23,7 @@ parameters:
   - java11
   - java8
 trigger:
-- master
+- none
 pool:
   name: Default
 
