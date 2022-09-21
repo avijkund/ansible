@@ -28,5 +28,5 @@ steps:
     playbookPathOnAgentMachine: 'ansible-playbook/test_azure.yaml'
     inventoriesAgentMachine: 'file'
     inventoryFileOnAgentMachine: 'ansible-playbook/inventory'
-    args: '--extra-vars "java=${{ parameters.java }}"'
+    args: '-e "java=${{ parameters.java }}"'
 
