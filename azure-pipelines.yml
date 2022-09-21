@@ -6,7 +6,7 @@ parameters:
 - name: image
   displayName: Pool Image
   type: string
-  default: ubuntu-latest
+  #default: ubuntu-latest
   values:
   - windows-latest
   - vs2017-win2016
@@ -14,6 +14,14 @@ parameters:
   - ubuntu-16.04
   - macOS-latest
   - macOS-10.14
+  
+- name: java
+  displayName: version
+  type: string
+  #default: ubuntu-latest
+  values:
+  - java11
+  - java8
 trigger:
 - master
 pool:
@@ -26,5 +34,5 @@ steps:
     playbookPathOnAgentMachine: 'ansible-playbook/test_azure.yaml'
     inventoriesAgentMachine: 'file'
     inventoryFileOnAgentMachine: 'ansible-playbook/inventory'
-    args: '--extra-vars "image=${{ parameters.image }}"'
+    args: '--extra-vars "image=${{ parameters.image }} java=${{ parameters.java }}"'
 
