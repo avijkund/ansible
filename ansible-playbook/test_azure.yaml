@@ -3,5 +3,5 @@
   hosts: win
   tasks:
   - debug:
-      var: $(image)
+      var: image
   
