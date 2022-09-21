@@ -10,11 +10,6 @@ parameters:
   values:
   - jdk-11.0.16
   - jdk-11.0.17
-  - jdk-11.0.18
-  - jdk-11.0.19
-  - jdk-11.0.20
-  - jdk-11.0.21
-  - jdk-11.0.22
   
 trigger:
 - none
