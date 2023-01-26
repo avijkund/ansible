@@ -1,17 +1,13 @@
 ---
 - name: Test run
   hosts: localhost
-  #collections:
-  #- amazon.aws
+  collections:
+  - community.aws
   tasks:
-  #- name: test
-  #  sts_assume_role:
-  #    role_arn: "arn:aws:iam::123456789012:role/someRole"
-  #    role_session_name: "someRoleSession"
-  #  register: assumed_role
-  - name: install py module
-    pip:
-      name: botocore
-      state: present
+  - name: test
+    sts_assume_role:
+      role_arn: "arn:aws:iam::123456789012:role/someRole"
+      role_session_name: "someRoleSession"
+    register: assumed_role
     
       
