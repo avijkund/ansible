@@ -2,8 +2,7 @@
 - name: Test run
   hosts: localhost
   collections:
-  - name: community.aws
-    version: 3.1.1
+  - amazon.aws
   tasks:
   - name: test
     community.aws.sts_assume_role:
