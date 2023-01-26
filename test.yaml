@@ -11,7 +11,7 @@
   #  register: assumed_role
   - name: install py module
     pip:
-      name: boto3
+      name: botocore
       state: present
     
       
