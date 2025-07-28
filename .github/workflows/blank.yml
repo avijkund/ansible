@@ -1,15 +1,16 @@
-name: CI Pipeline
+name: My Workflow
 
 on:
-  push:
-    branches:
-      - '**'               # All branches (including main)
-  pull_request:
-    types: [opened, synchronize, reopened, closed]  # to detect PR creation/updates and merge
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environment'
+        required: true
+        default: 'dev'
+  # to detect PR creation/updates and merge
 
 jobs:
   common-tasks:
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,21 +18,3 @@ jobs:
 
       - name: Run common tasks
         run: echo "Running group of common tasks"
-
-  extra-task:
-    needs: common-tasks
-    if: >
-      github.event_name == 'pull_request' &&
-      (
-        github.event.action == 'opened' ||
-        github.event.action == 'synchronize' ||
-        github.event.action == 'reopened' ||
-        (github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main')
-      )
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run extra task for PR or merge to main
-        run: echo "Running extra task for PR or after merging to main"
